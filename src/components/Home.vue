@@ -6,10 +6,12 @@
 
 <script>
 import Cards from './categoryCards/CategoryCards.vue'
+
 export default {
-  name: 'Blog',
+  name: 'Home',
   components: {
     Cards,
+
   },
   props: {
     msg: String

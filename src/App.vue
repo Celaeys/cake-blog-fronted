@@ -1,17 +1,18 @@
 <template>
   <Navbar />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <Banner />
+  <router-view />
 </template>
 
 <script>
-import HelloWorld from "./components/Blog.vue";
 import Navbar from "./components/Navbar.vue";
+import Banner from "./components/reusable/Banner.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
     Navbar,
+    Banner,
   },
 };
 </script>

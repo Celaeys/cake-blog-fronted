@@ -1,25 +1,19 @@
 <template>
-    <div class="max-w-sm w-full max-w-full flex">
-        <div class="p-4 h-80 min-h-fit lg:w-1/2 md:w-1/2 text-center text-text-color-dark">
-            <h3>CRYSTALS</h3>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,</p>
-            <p>Lorem</p>
-            <SimpleButton />
-        </div>
-        <div class="bg-secondary-hover h-80 min-h-fit lg:w-1/2 md:w-1/2">
-            <img class="object-cover h-80 w-full" src="https://cataas.com/cat"/>
-        </div>
+    <div>
+      <card-element />
+      <card-element />
+      <card-element />
     </div>
 </template>
 <style>
 
 </style>
 <script>
-import SimpleButton from '../reusable/SimpleButton.vue'
+import CardElement from './CardElement.vue'
 export default {
   name: 'CategoryCards',
   components: {
-    SimpleButton,
+    CardElement,
   }
 }
 </script>

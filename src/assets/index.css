@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    .link-headline {
+      @apply text-2xl;
+      @apply text-primary;
+    }
+    .link-text {
+        @apply text-base;
+        @apply text-text-color-dark;
+    }
+  }
