@@ -1,7 +1,7 @@
 <template>
   <Navbar />
   <Banner />
-  <router-view />
+  <router-view class="bg-primary bg-opacity-20" />
 </template>
 
 <script>

@@ -1,15 +1,16 @@
 <template>
 <div id="blog-overview">
-  <ul id="array-rendering">
-    <li class="lg:w-1/4 xl:w-1/4 hover:border-primary hover:bg-secondary-hover hover:bg-opacity-20" v-for="post in posts" v-bind:key=post.id>
+  <ul class="w-full flex">
+    <li class="lg:w-1/4 xl:w-1/4 hover:border-primary hover:bg-secondary-hover hover:bg-opacity-20" v-for="post in posts" v-bind:key="post.id">
       <div class="link-image">
-        <img class="m-5 w-90 h-1" src="https://cataas.com/cat"/>
+        <img class="m-5 w-90 h-1" :src="getMediaUrl(post.featured_media)"/>
       </div>
       <div class="link-text">
         <h3 v-html="post.title.rendered" class="link-headline"></h3>
-        <span class="link-text" v-html="post.content.rendered"></span>
-        <span class="link-text">{{ post.date }}</span>
-        <simple-button>{{ post.title.rendered }}</simple-button>
+        <span class="link-text" v-html="post.excerpt.rendered"></span>
+        <simple-button>
+          <router-link :to="{ name: 'BlogDetails', params: { postName: post.slug }}">Read more!</router-link>
+        </simple-button>
       </div>
     </li>
   </ul>
@@ -19,7 +20,6 @@
 
 <script>
 import axios from 'axios';
-import moment from 'moment';
 import SimpleButton from './reusable/SimpleButton.vue';
 export default {
   components: { SimpleButton },
@@ -27,15 +27,13 @@ export default {
   data() {
     return {
       posts: [],
-      errors: []
+      errors: [], 
+      url: 'http://h2952311.stratoserver.net/wp-json/wp/v2/'
     }
   },
-
-  // Fetches posts when the component is created.
   created() { 
-    axios.get(`http://h2952311.stratoserver.net/wp-json/wp/v2/posts`)
+    axios.get(this.url +`posts`)
     .then(response => {
-      // JSON responses are automatically parsed.
       this.posts = response.data
       console.log(response.data)
     })
@@ -43,12 +41,16 @@ export default {
       this.errors.push(e)
     })
   },
-  computed: {
-    formatDate(value) {
-      if (value) {
-        return moment(String(value)).format('MM/DD/YYYY hh:mm')
-      }
-      return value;
+  methods: {
+    getMediaUrl: function(mediaId) {
+      axios.get(this.url +`media/` + mediaId)
+        .then(response => {
+      console.log('HI', response.data.source_url)
+      return response.data.source_url;
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
     }
   },
 }
