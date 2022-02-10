@@ -20,7 +20,17 @@ const routes = [
       component: BlogDetails,
       name:'BlogDetails',
       props: true,
-      meta: 'Hello'
+    },
+    { 
+      path: '/recipes',
+      component: BlogOverview,
+      name:'Recipes'
+    },
+    { 
+      path: '/recipes/:postName',
+      component: BlogDetails,
+      name:'RecipeDetails',
+      props: true,
     },
 ]
 

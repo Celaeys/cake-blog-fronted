@@ -4,11 +4,19 @@
 
 @layer base {
     .link-headline {
-      @apply text-2xl;
+      @apply text-4xl;
+      @apply font-comforter;
       @apply text-primary;
+      @apply m-5;
     }
     .link-text {
         @apply text-base;
+        @apply m-5;
         @apply text-text-color-dark;
+    }
+    .blog-overview-link-text > p {
+      @apply text-base;
+      @apply m-5;
+      @apply text-text-color-dark;
     }
   }

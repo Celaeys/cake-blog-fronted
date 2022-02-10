@@ -1,13 +1,13 @@
 <template>
 <div id="blog-overview">
-  <ul class="w-full flex">
-    <li class="lg:w-1/4 xl:w-1/4 hover:border-primary hover:bg-secondary-hover hover:bg-opacity-20" v-for="post in posts" v-bind:key="post.id">
+  <ul class="w-full lg:flex xl:flex md:flex mb-7">
+    <li class="lg:w-1/4 xl:w-1/4 md:w-1/2 sm:w-full hover:border-primary hover:bg-secondary-hover hover:bg-opacity-20 p-5" v-for="post in posts" v-bind:key="post.id">
       <div class="link-image">
-        <img class="m-5 w-90 h-1" :src="getMediaUrl(post.featured_media)"/>
+        <img class="m-5 w-90 h-1" :src="getMediaUrl(post.featured_media)" alt="MEEEH"/>
       </div>
-      <div class="link-text">
+      <div>
         <h3 v-html="post.title.rendered" class="link-headline"></h3>
-        <span class="link-text" v-html="post.excerpt.rendered"></span>
+        <span class="blog-overview-link-text" v-html="post.excerpt.rendered"></span>
         <simple-button>
           <router-link :to="{ name: 'BlogDetails', params: { postName: post.slug }}">Read more!</router-link>
         </simple-button>
@@ -32,10 +32,11 @@ export default {
     }
   },
   created() { 
-    axios.get(this.url +`posts`)
+    axios.get(this.url +`posts?category=`+ this.$route.name.toLowerCase())
     .then(response => {
       this.posts = response.data
       console.log(response.data)
+      console.log(this.$route.name.toLowerCase())
     })
     .catch(e => {
       this.errors.push(e)

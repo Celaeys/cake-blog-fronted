@@ -11,6 +11,9 @@ module.exports = {
       'text-color-light':'#DFDAE0',
       'text-color-dark':'#443C48',
     },
+    fontFamily: {
+      'comforter': ['"Dancing Script"', 'cursive']
+    }
   },
   plugins: [],
 };
