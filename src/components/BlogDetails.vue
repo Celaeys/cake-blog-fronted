@@ -1,17 +1,22 @@
 <template>
     <main>
         <div class="w-4/5 mx-auto m post-content">
-            <h1> {{post}} </h1>
             <h1 class="text-3xl text-primary text-center"> {{post.title.rendered}} </h1>
+            <div v-html="post.excerpt.rendered"></div>
+            <rainbow-divider class="w-full"/>
             <div v-html="post.content.rendered"></div>
         </div>
     </main>
 </template>
 <script>
 import axios from 'axios';
+import RainbowDivider from './reusable/RainbowDivider.vue'
 export default {
   name: 'BlogDetails',
   props: ['postId'],
+  components: {
+    RainbowDivider
+  },
   data() {
     return {
       post: [],

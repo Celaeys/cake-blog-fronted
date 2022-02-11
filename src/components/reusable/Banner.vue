@@ -9,7 +9,7 @@ export default {
 </script>
 <style>
  .banner {
-   background-image: url('https://i.pinimg.com/originals/4f/3e/5a/4f3e5a8b3af5bf4fbfa475430ae74407.jpg');
+   background-image: url('https://img.myloview.de/bilder/magic-ancient-viking-art-deco-vegvisir-magic-navigation-compass-ancient-the-vikings-used-many-symbols-in-accordance-to-norse-mythology-widely-used-in-viking-society-logo-icon-wiccan-esoteric-sign-400-219148555.jpg');
    background-size: cover;
  }
 </style>
