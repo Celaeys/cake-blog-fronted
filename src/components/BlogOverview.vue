@@ -35,6 +35,7 @@ export default {
     axios.get(this.url +`posts?category=`+ this.$route.name.toLowerCase())
     .then(response => {
       this.posts = response.data
+      // mediaurl object anhängen? Also hier iterieren und für jeden Post die MediaURL schon an das VueObjekt anhängen. BAAAH 
       console.log(response.data)
       console.log(this.$route.name.toLowerCase())
     })
