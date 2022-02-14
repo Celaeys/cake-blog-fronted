@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <Cards/>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <Navbar />
   <Banner />
-  <router-view class="mb-5"/>
+  <router-view />
   <Footer />
 </template>
 

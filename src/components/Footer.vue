@@ -1,6 +1,6 @@
 <template>
-    <footer class="text-center text-text-color-dark">
-    <div class="container px-6 pt-6">
+    <footer class="text-center text-text-color-dark bg-text-color-light">
+    <div class="w-full px-6 pt-6">
         <div class="flex justify-center mb-6">
         <a :href="tiktok" type="button" class="hover:bg-primary hover:text-text-color-light rounded-full p-2 border-2 border-white text-text-color-text-text-color-dark leading-normal uppercase hover:bg-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
             <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +60,7 @@
         </div>
   </div>
 
-  <div class="text-center text-text-color-light p-4 bg-secondary-standard">
+  <div class="text-center text-text-color-light p-4 bg-primary">
     © 2021 Copyright:
     <a class="text-text-color-light" href="https://tailwind-elements.com/">Tailwind Elements</a>
   </div>

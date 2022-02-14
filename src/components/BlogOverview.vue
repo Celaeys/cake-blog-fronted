@@ -1,6 +1,6 @@
 <template>
 <div id="blog-overview">
-  <ul class="w-full lg:flex xl:flex md:flex mb-7">
+  <ul class="w-full lg:flex xl:flex md:flex">
     <li class="lg:w-1/4 xl:w-1/4 md:w-1/2 sm:w-full hover:border-primary hover:bg-secondary-hover hover:bg-opacity-20 p-5" v-for="post in posts" v-bind:key="post.id">
       <div class="link-image">
         <img class="m-5 w-90 h-1" :src="getMediaUrl(post.featured_media)" alt="MEEEH"/>

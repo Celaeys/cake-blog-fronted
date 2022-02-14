@@ -10,6 +10,7 @@ module.exports = {
       },
       'text-color-light':'#DFDAE0',
       'text-color-dark':'#443C48',
+      'white': '#fff',
     },
     fontFamily: {
       'comforter': ['"Dancing Script"', 'cursive']

@@ -1,6 +1,6 @@
 <template>
     <main>
-        <div class="w-4/5 mx-auto m post-content">
+        <div class="w-4/5 mx-auto -mt-28 post-content bg-white sm:p-10 p-5">
             <h1 class="text-3xl text-primary text-center"> {{post.title.rendered}} </h1>
             <div v-html="post.excerpt.rendered"></div>
             <rainbow-divider class="w-full"/>
@@ -41,14 +41,3 @@ export default {
   },
 }
 </script>
-<style scoped>
-    main {
-        background-image: url("https://www.epicbot.com/forum/uploads/monthly_2021_01/wp2742875.jpg.26afe1988aadffc6e0d6aaf07f9fc539.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    .post-content {
-        background-color:rgba(255,255,255,0.5);
-        opacity: 1;
-    }
-</style>
