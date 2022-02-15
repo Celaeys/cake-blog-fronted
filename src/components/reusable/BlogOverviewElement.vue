@@ -1,25 +1,16 @@
 <template>
-<div class="py-4">
-    <div class="shadow-lg group container rounded-md bg-white  max-w-sm flex justify-center items-center  mx-auto content-div">
-        <div>
-            <div  class="w-full image-cover rounded-t-md" >
-            <div class="p-2 m-4 w-16 h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25">
-                <span class="text-base tracking-wide  font-bold border-b border-white font-sans">{{ dateDay }}</span>
-                <span class="text-xs tracking-wide font-bold uppercase block font-sans">{{ dateMonth }}</span>
-            </div>
-            </div>
-        </div>
-        <div class="absolute opacity-0 fd-sh group-hover:opacity-100">
-            <span class="text-3xl font-bold text-white tracking-wider leading-relaxed font-sans" v-html="headline"></span> 
-            <div class="pt-8 text-center">
-                <span v-html="description"></span>
-                <simple-button>
-                    <router-link :to="{ name: 'BlogDetails', params: { postName: slug }}">Read more!</router-link>
-                </simple-button>
-            </div>
-        </div>
-    </div>
-</div>
+  <div class="card">
+		<figure class="card__thumb">
+			<img :src="image" alt="Picture by Kyle Cottrell" class="card__image">
+			<figcaption class="card__caption">
+				<h2 class="card__title" v-html="headline"></h2>
+				<p class="card__snippet" v-html="description"></p>
+        <simple-button>
+          <router-link :to="{ name: 'BlogDetails', params: { postName: slug }}">Read more!</router-link>
+        </simple-button>
+			</figcaption>
+		</figure>
+	</div>
 </template>
 <script>
 import SimpleButton from './SimpleButton.vue'
@@ -27,48 +18,128 @@ export default {
   name: 'BlogOverviewElement',
   components: { SimpleButton },
   props: {
-        headline: String, 
-        slug: String,
-        description: String,
-        image: String,
-        dateDay: Number,
-        dateMonth: String,
+    headline: String, 
+    slug: String,
+    description: String,
+    image: String,
+    dateDay: Number,
+    dateMonth: String,
   },
-  computed: {
-    btnStyles() {
-      return {
-        "background-color": this.bgColor,
-        height: `${this.height}px`
-      };
+  data() {
+    return {
+      hover: false
     }
-  }
+  },
+
 };
 </script>
-<style>
-  .content-div{
-  background-image:url('https://cataas.com/cat');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position:center;
+<style scoped>
+.card {
+  width: 300px;
+  margin: 10px;
+  background-color: white;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
 }
-  .content-div:hover{
-    background-image:
-    linear-gradient(to right,
-     rgba(126, 213, 111, 0.801), hsla(160, 64%, 43%, 0.801) ),
-     url('https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80');
-    }
-
-    .image-cover  {
-      height:260px;
-    }
-  /*
-  -remove the classes below if you have the 'group-hover'property added in your tailwind config file
-  -also remove the class from the html template
-  */
-    .content-div:hover .fd-cl{ 
- opacity: 0.25;
-    }
-    .content-div:hover .fd-sh{ 
- opacity: 1;
-    }
+.card:hover .card__caption {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.card:hover .card__image {
+  transform: translateY(-10px);
+}
+.card:hover .card__thumb::after {
+  top: 0;
+}
+.card:hover .card__snippet {
+  margin: 20px 0;
+}
+.card__thumb {
+  position: relative;
+  max-height: 250px;
+  overflow: hidden;
+}
+@media (min-width: 1024px) {
+  .card__thumb {
+    max-height: 250px;
+  }
+}
+.card__thumb::after {
+  position: absolute;
+  top: 0;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 40%, rgba(255, 255, 255, 0) 100%);
+  transition: 0.3s;
+}
+@media (min-width: 1024px) {
+  .card__thumb::after {
+    top: calc(100% - 140px);
+  }
+}
+.card__image {
+  transition: 0.5s ease-in-out;
+}
+.card__caption {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  padding: 0 20px;
+  color: white;
+  transform: translateY(-50%);
+  text-align: center;
+  transition: 0.3s;
+}
+@media (min-width: 1024px) {
+  .card__caption {
+    top: calc(100% - 110px);
+    transform: unset;
+  }
+}
+.card__title {
+  display: -webkit-box;
+  max-height: 85px;
+  overflow: hidden;
+  font-family: "Playfair Display", serif;
+  font-size: 23px;
+  line-height: 28px;
+  text-shadow: 0px 1px 5px black;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.card__snippet {
+  display: -webkit-box;
+  max-height: 150px;
+  margin: 20px 0;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  transition: 0.5s ease-in-out;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+@media (min-width: 1024px) {
+  .card__snippet {
+    margin: 60px 0;
+  }
+}
+.card__button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: white;
+  border: 1px solid white;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.card__button:hover {
+  color: black;
+  background-color: white;
+}
 </style>

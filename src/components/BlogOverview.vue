@@ -1,17 +1,17 @@
 <template>
-<div id="blog-overview">
-  <ul class="w-full lg:flex xl:flex md:flex">
-    <li class="lg:w-1/4 xl:w-1/4 md:w-1/2 sm:w-full hover:border-primary hover:bg-secondary-hover hover:bg-opacity-20 p-5" v-for="post in posts" v-bind:key="post.id">
-      <BlogOverviewElement :headline="post.headline" :description="post.description" :slug="post.slug" :dateDay="post.dateDay" :dateMonth="post.dateMonth" :image="post.image"/>
-    </li>
+  <div class="container flex">
+    <BlogOverviewElement v-for="post in posts" v-bind:key="post.id" :headline="post.headline" :description="post.description" :slug="post.slug" :dateDay="post.dateDay" :dateMonth="post.dateMonth" :image="post.image"/>
+  </div>
+  <ul class="cards">
+    <BlogOverviewElement2 v-for="post in posts" v-bind:key="post.id" :headline="post.headline" :description="post.description" :slug="post.slug" :dateDay="post.dateDay" :dateMonth="post.dateMonth" :image="post.image"/>
   </ul>
-</div>
 </template>
 <script>
 import axios from 'axios';
 import BlogOverviewElement from './reusable/BlogOverviewElement.vue'
+import BlogOverviewElement2 from './reusable/BlogOverviewElement2.vue'
 export default {
-  components: { BlogOverviewElement},
+  components: { BlogOverviewElement, BlogOverviewElement2 },
   name: 'BlogOverview',
   data() {
     return {
@@ -56,3 +56,14 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 4rem 5vw;
+  padding: 0;
+  list-style-type: none;
+}
+</style>
