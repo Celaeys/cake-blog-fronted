@@ -1,5 +1,5 @@
 <template>
-  <li class="w-1/3 m-5">
+  <li class="my-3">
     <router-link :to="{ name: 'BlogDetails', params: { postName: slug }}" class="card">
       <img :src="image" class="w-full" alt="" />
       <div class="bg-text-color-light text-text-color-dark card__overlay">
@@ -38,7 +38,6 @@ export default {
       hover: false
     }
   },
-
 };
 </script>
 <style scoped>

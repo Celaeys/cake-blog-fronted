@@ -1,5 +1,5 @@
 <template>
-  <ul class="flex">
+  <ul class="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:gap-4">
     <BlogOverviewElement v-for="post in posts" v-bind:key="post.id" :headline="post.headline" :description="post.description" :slug="post.slug" :dateDay="post.dateDay" :dateMonth="post.dateMonth" :image="post.image"/>
   </ul>
 </template>
@@ -7,6 +7,7 @@
 import axios from 'axios';
 import BlogOverviewElement from './reusable/BlogOverviewElement.vue'
 export default {
+  inject: ['blogData'],
   components: { BlogOverviewElement},
   name: 'BlogOverview',
   data() {
@@ -17,6 +18,7 @@ export default {
     }
   },
   created() { 
+    console.log(this.blogData);
     axios.get(this.url +`posts?category=`+ this.$route.name.toLowerCase())
     .then(response => {
       // taxonomy category name render for id in posts and check for name
