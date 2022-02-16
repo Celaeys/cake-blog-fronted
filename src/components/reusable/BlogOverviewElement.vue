@@ -1,22 +1,30 @@
 <template>
-  <div class="card">
-		<figure class="card__thumb">
-			<img :src="image" alt="Picture by Kyle Cottrell" class="card__image">
-			<figcaption class="card__caption">
-				<h2 class="card__title" v-html="headline"></h2>
-				<p class="card__snippet" v-html="description"></p>
-        <simple-button>
-          <router-link :to="{ name: 'BlogDetails', params: { postName: slug }}">Read more!</router-link>
-        </simple-button>
-			</figcaption>
-		</figure>
-	</div>
+  <li class="w-1/3 m-5">
+    <router-link :to="{ name: 'BlogDetails', params: { postName: slug }}" class="card">
+      <img :src="image" class="w-full" alt="" />
+      <div class="bg-text-color-light text-text-color-dark card__overlay">
+        <div class="card__header bg-text-color-light">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+          <div class="card__header-text">
+            <h3 class="text-3xl">
+              {{ headline }}
+            </h3>
+            <div class="card__status flex justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              <span class="mt-2 ml-2">{{dateDay}} {{dateMonth}}</span>
+            </div>
+          </div>
+        </div>
+        <p class="bg-text-color-light card__description text-text-color-dark" v-html="description"></p>
+      </div>
+    </router-link>      
+  </li>
 </template>
 <script>
-import SimpleButton from './SimpleButton.vue'
 export default {
   name: 'BlogOverviewElement',
-  components: { SimpleButton },
   props: {
     headline: String, 
     slug: String,
@@ -34,112 +42,70 @@ export default {
 };
 </script>
 <style scoped>
+* {
+  box-sizing: border-box;
+}
+
 .card {
-  width: 300px;
-  margin: 10px;
-  background-color: white;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
-}
-.card:hover .card__caption {
-  top: 50%;
-  transform: translateY(-50%);
-}
-.card:hover .card__image {
-  transform: translateY(-10px);
-}
-.card:hover .card__thumb::after {
-  top: 0;
-}
-.card:hover .card__snippet {
-  margin: 20px 0;
-}
-.card__thumb {
   position: relative;
-  max-height: 250px;
-  overflow: hidden;
-}
-@media (min-width: 1024px) {
-  .card__thumb {
-    max-height: 250px;
-  }
-}
-.card__thumb::after {
-  position: absolute;
-  top: 0;
   display: block;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 40%, rgba(255, 255, 255, 0) 100%);
-  transition: 0.3s;
-}
-@media (min-width: 1024px) {
-  .card__thumb::after {
-    top: calc(100% - 140px);
-  }
-}
-.card__image {
-  transition: 0.5s ease-in-out;
-}
-.card__caption {
-  position: absolute;
-  top: 50%;
-  z-index: 1;
-  padding: 0 20px;
-  color: white;
-  transform: translateY(-50%);
-  text-align: center;
-  transition: 0.3s;
-}
-@media (min-width: 1024px) {
-  .card__caption {
-    top: calc(100% - 110px);
-    transform: unset;
-  }
-}
-.card__title {
-  display: -webkit-box;
-  max-height: 85px;
+  height: 100%;  
+  border-radius: 40px;
   overflow: hidden;
-  font-family: "Playfair Display", serif;
-  font-size: 23px;
-  line-height: 28px;
-  text-shadow: 0px 1px 5px black;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-.card__snippet {
-  display: -webkit-box;
-  max-height: 150px;
-  margin: 20px 0;
-  overflow: hidden;
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  line-height: 20px;
-  text-overflow: ellipsis;
-  transition: 0.5s ease-in-out;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-}
-@media (min-width: 1024px) {
-  .card__snippet {
-    margin: 60px 0;
-  }
-}
-.card__button {
-  display: inline-block;
-  padding: 10px 20px;
-  color: white;
-  border: 1px solid white;
-  font-family: "Roboto", sans-serif;
-  font-size: 12px;
-  text-transform: uppercase;
   text-decoration: none;
-  transition: 0.3s;
 }
-.card__button:hover {
-  color: black;
-  background-color: white;
+
+.card__arc {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 100%;
+  right: 0;      
+  z-index: 1;
 }
+
+.card__arc path {
+  fill: #DFDAE0;
+  d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+}  
+
+.card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;      
+  border-radius: 40px;
+  text-align: center;
+  transform: translateY(100%);
+  transition: .2s ease-in-out;
+}
+
+.card:hover .card__overlay {
+  transform: translateY(0);
+}
+
+.card__header {
+  padding: 1em;
+  border-radius: 40px 0 0 0;
+  transform: translateY(-100%);
+  transition: .2s ease-in-out;
+}
+
+.card:hover .card__header {
+  transform: translateY(0);
+}
+
+.card__status {
+  font-size: .8em;
+}
+
+.card__description {
+  padding: 0 1em 1em;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}    
 </style>

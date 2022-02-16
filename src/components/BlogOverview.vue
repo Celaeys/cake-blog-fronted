@@ -1,17 +1,13 @@
 <template>
-  <div class="container flex">
+  <ul class="flex">
     <BlogOverviewElement v-for="post in posts" v-bind:key="post.id" :headline="post.headline" :description="post.description" :slug="post.slug" :dateDay="post.dateDay" :dateMonth="post.dateMonth" :image="post.image"/>
-  </div>
-  <ul class="cards">
-    <BlogOverviewElement2 v-for="post in posts" v-bind:key="post.id" :headline="post.headline" :description="post.description" :slug="post.slug" :dateDay="post.dateDay" :dateMonth="post.dateMonth" :image="post.image"/>
   </ul>
 </template>
 <script>
 import axios from 'axios';
 import BlogOverviewElement from './reusable/BlogOverviewElement.vue'
-import BlogOverviewElement2 from './reusable/BlogOverviewElement2.vue'
 export default {
-  components: { BlogOverviewElement, BlogOverviewElement2 },
+  components: { BlogOverviewElement},
   name: 'BlogOverview',
   data() {
     return {
@@ -23,6 +19,7 @@ export default {
   created() { 
     axios.get(this.url +`posts?category=`+ this.$route.name.toLowerCase())
     .then(response => {
+      // taxonomy category name render for id in posts and check for name
       this.posts = response.data;
       for (let i = 0; i < this.posts.length; i++) {
         this.posts[i].headline = this.posts[i].title.rendered;
@@ -56,14 +53,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin: 4rem 5vw;
-  padding: 0;
-  list-style-type: none;
-}
-</style>
