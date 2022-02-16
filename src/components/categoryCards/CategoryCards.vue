@@ -15,10 +15,11 @@ export default {
     CardElement,
   },
   setup() {
+    // TODO: make images black and white and coloured on hover
     const categories = ref([
             { title: 'Blog', description: 'Balinese american shorthair american bobtail malkin', buttonText: 'Read more', alignImage: 'right'},
             { title: 'Recipes', description: 'Donskoy devonshire rex birman tom', buttonText: 'Browse recipes', alignImage: 'left'},
-            { title: 'Shop', description: 'Coming Soon', buttonText: 'Find your Stuff', alignImage: 'right'},
+            // { title: 'Shop', description: 'Coming Soon', buttonText: 'Find your Stuff', alignImage: 'right'},
         ]);
     return {
       categories
