@@ -1,8 +1,8 @@
 // router.js
 import { createRouter } from 'vue-router'
 import Home from './components/Home.vue'
-import BlogOverview from './components/BlogOverview.vue'
-import BlogDetails from './components/BlogDetails.vue'
+import BlogOverview from './components/blog/BlogOverview.vue'
+import BlogDetails from './components/blog/BlogDetails.vue'
 
 const routes = [
     { 

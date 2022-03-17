@@ -5,7 +5,7 @@
 </template>
 <script>
 import axios from 'axios';
-import BlogOverviewElement from './reusable/BlogOverviewElement.vue'
+import BlogOverviewElement from '../reusable/BlogOverviewElement.vue'
 export default {
   inject: ['blogData'],
   components: { BlogOverviewElement},
