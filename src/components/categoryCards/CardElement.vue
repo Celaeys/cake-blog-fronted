@@ -7,7 +7,7 @@
             <h3 class="text-6xl text-primary m-5 font-comforter">{{ title }}</h3>
             <p class="m-5 ali">{{ description }}</p>
             <simple-button class="font-comforter uppercase tracking-widest">
-              <router-link class="text-center block py-2 px-4 text-text-color-dark hover:bg-secondary-hover hover:bg-opacity-50" :to="routePath">{{ buttonText }}</router-link>
+              <router-link class="text-center block py-2 px-4 text-text-color-light hover:bg-secondary-hover hover:bg-opacity-50" :to="routePath">{{ buttonText }}</router-link>
             </simple-button>
         </div>
         <div v-if="alignImage === 'right'" class="bg-secondary-hover h-80 min-h-fit lg:w-1/2 md:w-1/2 sm:w-1/4">

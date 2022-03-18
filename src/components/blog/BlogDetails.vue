@@ -1,8 +1,8 @@
 <template>
     <main>
-        <div class="w-4/5 mx-auto -mt-28 post-content bg-white sm:p-10 p-5">
+        <div class="w-4/5 mx-auto post-content bg-white sm:p-10 p-5">
             <h1 class="text-3xl text-primary text-center"> {{post.title.rendered}} </h1>
-            <div v-html="post.excerpt.rendered"></div>
+            <div v-html="post.excerpt.rendered" class="renderedSummary"></div>
             <rainbow-divider class="w-full"/>
             <div v-html="post.content.rendered" class="flex flex-col renderedPost"></div>
         </div>
@@ -42,10 +42,21 @@ export default {
 }
 </script>
 
+<style scoped>
+  main {
+    background: rgba(223, 218, 224);
+  }
+</style>
 <style>
+  .renderedSummary {
+    padding: 0 1em;
+    margin: 1em;
+  }
+  .post-content {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
   .renderedPost > p {
-    background-color: lightgreen;
-    border: 1px double grey;
     padding: 1em;
     margin: 1em;
   }
@@ -53,17 +64,12 @@ export default {
     width: 70vw;
     height: auto;
     position:relative;
-    background:#CEA5A6;
+    background:#DFDAE0;
     overflow:hidden;
     margin:30px auto;
     padding:20px;
     border-radius:0 0 0 30px/45px;
-    box-shadow:
-      inset 0 -40px 40px rgba(0,0,0,0.2),
-      inset 0 25px 10px rgba(0,0,0,0.2),
-      0 5px 6px 5px rgba(0,0,0,0.2);
-    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
-    color: #DFDAE0;
+    color: #4E2C46;
     text-align: center;
   }
 
@@ -73,7 +79,7 @@ export default {
     position:absolute;
     width:20px;
     height:25px;
-    background:#CEA5A6;
+    background:#DFDAE0;
     box-shadow:
       3px -2px 10px rgba(0,0,0,0.2),
       inset 15px -15px 15px rgba(0,0,0,0.3);
@@ -89,7 +95,7 @@ export default {
     position:absolute;
     width:75%;
     height:20px; 
-    border-top:3px solid #DFDAE0;
+    border-top:3px solid #4E2C46;
     border-radius: 50% ;
     bottom:0px;
     left:10%;
@@ -98,5 +104,16 @@ export default {
   .renderedPost > .wp-block-image > img {
     width: 70vw;
     margin-bottom: 1em;
+  }
+
+  .renderedPost > ul {
+    margin: 0 10%;
+  }
+
+  .renderedPost > ul > li {
+    margin: 2% 0;
+    padding: 2%;
+    background: #4E2C46;
+    color: #DFDAE0;
   }
 </style>
